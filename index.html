@@ -347,7 +347,7 @@ textarea { resize: vertical; min-height: 80px; }
       <input type="text" id="evtName" placeholder="Event name">
       <input type="text" id="evtDate" placeholder="Date (dd/mm/yy)">
       <input type="text" id="evtTickets" placeholder="Total tickets" inputmode="numeric" pattern="[0-9]*">
-      <button class="btn" onclick="createEvent()">Create Event</button>
+      <button class="btn" id="createEventBtn">Create Event</button>
       <div class="message" id="evtMsg"></div>
     </div>
   </div>
@@ -949,6 +949,9 @@ function nukeAll() {
 
 
 // ─── BOOT ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('createEventBtn').addEventListener('click', createEvent);
+});
 initKeys().then(()=>{ renderStamps(); });
 </script>
 
