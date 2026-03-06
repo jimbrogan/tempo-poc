@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +12,11 @@
 <meta name="theme-color" content="#0f0f0f">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #f0f0f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }.screen { display: none; flex-direction: column; align-items: center; width: 100%; max-width: 420px; padding: 48px 24px; min-height: 100vh; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #f0f0f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+.screen { display: none; flex-direction: column; align-items: center; width: 100%; max-width: 420px; padding: 48px 24px; min-height: 100vh; }
 .screen.active { display: flex; }
+
 .wordmark { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #555; margin-bottom: 48px; }
 .heading { font-size: 26px; font-weight: 300; margin-bottom: 8px; text-align: center; }
 .subheading { font-size: 13px; color: #666; text-align: center; margin-bottom: 40px; line-height: 1.6; }
@@ -19,6 +24,7 @@
 .divider { width: 100%; height: 1px; background: #1a1a1a; margin: 24px 0; }
 .message { font-size: 13px; color: #4caf7d; text-align: center; min-height: 20px; margin-bottom: 12px; }
 .error { font-size: 13px; color: #e05555; text-align: center; min-height: 20px; margin-bottom: 12px; }
+
 .btn { background: #c8a96e; color: #0f0f0f; border: none; padding: 14px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; width: 100%; margin-bottom: 12px; transition: opacity 0.2s; }
 .btn:hover { opacity: 0.85; }
 .btn:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -27,17 +33,23 @@
 .btn-danger { background: #e0555511; color: #e05555; border: 1px solid #e0555533; padding: 12px 32px; border-radius: 4px; font-size: 13px; cursor: pointer; width: 100%; margin-bottom: 12px; transition: all 0.2s; }
 .btn-danger:hover { background: #e0555522; }
 .btn-sm { padding: 10px 20px; font-size: 12px; margin-bottom: 8px; }
+.btn-redeem { background: #4caf7d; color: #0f0f0f; border: none; padding: 14px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; width: 100%; margin-bottom: 12px; transition: opacity 0.2s; }
+.btn-redeem:hover { opacity: 0.85; }
+
 input, textarea { background: #1a1a1a; border: 1px solid #2a2a2a; color: #f0f0f0; border-radius: 4px; padding: 12px 14px; font-size: 13px; width: 100%; margin-bottom: 12px; outline: none; font-family: inherit; }
 input:focus, textarea:focus { border-color: #c8a96e44; }
 textarea { resize: vertical; min-height: 80px; }
+
 /* VENUE BADGE */
 .venue-badge { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 24px; width: 100%; text-align: center; margin-bottom: 40px; }
 .venue-badge-name { font-size: 22px; font-weight: 300; margin-bottom: 4px; }
 .venue-badge-sub { font-size: 12px; color: #555; }
+
 /* NAV */
 .nav { display: flex; width: 100%; border-bottom: 1px solid #1a1a1a; margin-bottom: 40px; }
 .nav-item { flex: 1; text-align: center; padding: 14px 8px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #444; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
 .nav-item.active { color: #c8a96e; border-bottom-color: #c8a96e; }
+
 /* STAMP GRID */
 .stamp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; margin-bottom: 32px; }
 .stamp-cell { aspect-ratio: 1; border-radius: 8px; border: 1px solid #222; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: #111; transition: all 0.3s; }
@@ -46,11 +58,13 @@ textarea { resize: vertical; min-height: 80px; }
 .stamp-cell.filled .stamp-icon { opacity: 1; }
 .stamp-num { font-size: 10px; color: #444; }
 .stamp-cell.filled .stamp-num { color: #c8a96e88; }
+
 /* REWARD BANNER */
-.reward-banner { background: #c8a96e11; border: 1px solid #c8a96e44; border-radius: 8px; padding: 20px; width: 100%; text-align: center; margin-bottom: 24px; display: none; }
+.reward-banner { background: #4caf7d11; border: 1px solid #4caf7d44; border-radius: 8px; padding: 20px; width: 100%; text-align: center; margin-bottom: 24px; display: none; }
 .reward-banner.visible { display: block; }
-.reward-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #c8a96e; margin-bottom: 6px; }
+.reward-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #4caf7d; margin-bottom: 6px; }
 .reward-body { font-size: 13px; color: #888; }
+
 /* RECEIVE RING */
 .receive-ring { width: 140px; height: 140px; border-radius: 50%; border: 2px solid #c8a96e44; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; position: relative; }
 .receive-ring::after { content: ‘’; position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 1px solid #c8a96e22; animation: pulse 2s ease-in-out infinite; }
@@ -58,6 +72,7 @@ textarea { resize: vertical; min-height: 80px; }
 .receive-ring.rejected { border-color: #e0555588; }
 @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.08); opacity: 0.4; } }
 .receive-icon { font-size: 40px; }
+
 /* TOKEN CARD */
 .token-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 24px; width: 100%; display: none; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 20px; }
 .token-card.visible { display: flex; }
@@ -69,51 +84,78 @@ textarea { resize: vertical; min-height: 80px; }
 .sig-status { font-size: 11px; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 20px; }
 .sig-valid { background: #4caf7d22; color: #4caf7d; border: 1px solid #4caf7d44; }
 .sig-invalid { background: #e0555522; color: #e05555; border: 1px solid #e0555544; }
+
+/* REDEMPTION TOKEN CARD */
+.redemption-card { background: #4caf7d11; border: 1px solid #4caf7d44; border-radius: 8px; padding: 24px; width: 100%; display: none; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 20px; }
+.redemption-card.visible { display: flex; }
+.redemption-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #4caf7d; }
+
 /* ADMIN CARDS */
 .admin-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 20px; width: 100%; margin-bottom: 16px; }
 .admin-card-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #c8a96e; margin-bottom: 16px; }
+
 .stat-row { display: flex; gap: 12px; width: 100%; margin-bottom: 20px; }
 .stat { flex: 1; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; text-align: center; }
 .stat-num { font-size: 28px; font-weight: 300; color: #c8a96e; }
 .stat-label { font-size: 10px; color: #555; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
 /* EVENTS */
 .event-list { width: 100%; margin-bottom: 20px; }
 .event-item { background: #111; border: 1px solid #222; border-radius: 6px; padding: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
 .event-name { font-size: 14px; font-weight: 300; }
 .event-meta { font-size: 11px; color: #555; margin-top: 4px; }
 .event-badge { font-size: 10px; color: #c8a96e; border: 1px solid #c8a96e44; border-radius: 12px; padding: 3px 10px; }
+
 /* NOTICEBOARD */
 .post-item { background: #111; border: 1px solid #222; border-radius: 6px; padding: 14px; margin-bottom: 8px; width: 100%; }
 .post-title { font-size: 14px; font-weight: 400; margin-bottom: 4px; }
 .post-body { font-size: 12px; color: #666; line-height: 1.5; }
 .post-meta { font-size: 10px; color: #444; margin-top: 8px; }
+
 /* STAFF STAMP BUTTON */
 .stamp-issue-btn { width: 180px; height: 180px; border-radius: 50%; background: #c8a96e11; border: 2px solid #c8a96e44; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; margin: 20px 0; font-size: 36px; gap: 8px; }
 .stamp-issue-btn:hover { background: #c8a96e22; border-color: #c8a96e88; transform: scale(1.03); }
 .stamp-issue-btn:active { transform: scale(0.97); }
 .stamp-issue-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #c8a96e; }
+
 /* KEY INFO */
 .key-info { background: #111; border: 1px solid #1e1e1e; border-radius: 6px; padding: 14px; width: 100%; margin-bottom: 12px; }
 .key-info-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
 .key-info-val { font-size: 9px; color: #333; font-family: monospace; word-break: break-all; line-height: 1.5; }
+
 /* LOGIN */
 .login-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 32px; width: 100%; margin-bottom: 24px; }
 .role-tabs { display: flex; gap: 0; width: 100%; margin-bottom: 24px; border: 1px solid #2a2a2a; border-radius: 4px; overflow: hidden; }
 .role-tab { flex: 1; text-align: center; padding: 12px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; cursor: pointer; transition: all 0.2s; }
 .role-tab.active { background: #c8a96e; color: #0f0f0f; font-weight: 600; }
+
+/* REDEMPTION SCAN RESULT */
+.redeem-result { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 20px; width: 100%; display: none; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 16px; }
+.redeem-result.visible { display: flex; }
+.redeem-result.success { border-color: #4caf7d44; background: #4caf7d08; }
+.redeem-result.failure { border-color: #e0555544; background: #e0555508; }
 </style>
+
 </head>
-<body><!-- SCREEN: PORTAL --><div class="screen active" id="screen-portal">
+<body>
+
+<!-- SCREEN: PORTAL -->
+
+<div class="screen active" id="screen-portal">
   <div class="wordmark">Tempo</div>
   <div class="venue-badge">
     <div class="venue-badge-name">The Anchor</div>
     <div class="venue-badge-sub">Your local, locally run</div>
   </div>
   <div class="heading">Welcome in</div>
-  <div class="subheading">Your stamps and passes live on your device -- not ours.</div>
+  <div class="subheading">Your stamps and passes live on your device — not ours.</div>
   <button class="btn" onclick="go('screen-customer')">Open My Stamp Book</button>
   <button class="btn-ghost" onclick="go('screen-login')">Staff / Admin</button>
-</div><!-- SCREEN: LOGIN --><div class="screen" id="screen-login">
+</div>
+
+<!-- SCREEN: LOGIN -->
+
+<div class="screen" id="screen-login">
   <div class="wordmark">Tempo</div>
   <div class="heading">Sign in</div>
   <div class="subheading">Local access only</div>
@@ -128,46 +170,88 @@ textarea { resize: vertical; min-height: 80px; }
   </div>
   <button class="btn-ghost" onclick="go('screen-portal')">← Back</button>
   <div style="margin-top:24px;font-size:11px;color:#333;text-align:center;">PoC passwords: staff / admin</div>
-</div><!-- SCREEN: CUSTOMER --><div class="screen" id="screen-customer">
+</div>
+
+<!-- SCREEN: CUSTOMER -->
+
+<div class="screen" id="screen-customer">
   <div class="wordmark">Tempo</div>
   <div class="nav">
     <div class="nav-item active" onclick="showTab('c','stamps')">Stamps</div>
     <div class="nav-item" onclick="showTab('c','receive')">Receive</div>
     <div class="nav-item" onclick="showTab('c','passes')">Passes</div>
-  </div><div id="ctab-stamps" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+  </div>
+
+  <!-- STAMPS TAB -->
+
+  <div id="ctab-stamps" style="width:100%;display:flex;flex-direction:column;align-items:center;">
     <div class="heading">The Anchor</div>
     <div class="subheading" id="stampGoalLabel">Collect stamps for a free coffee</div>
     <div class="stamp-grid" id="stampGrid"></div>
     <div class="reward-banner" id="rewardBanner">
       <div class="reward-title">Card Complete</div>
-      <div class="reward-body">Go to Receive to claim your reward</div>
+      <div class="reward-body">Tap below to generate your redemption token</div>
     </div>
+    <button class="btn-redeem" id="redeemBtn" style="display:none;" onclick="initiateRedemption()">Redeem Reward →</button>
     <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Back to entrance</button>
-  </div><div id="ctab-receive" style="display:none;flex-direction:column;align-items:center;width:100%;">
-    <div class="heading">Ready to receive</div>
-    <div class="subheading">Hold your phone near the stamp</div>
+  </div>
+
+  <!-- RECEIVE TAB -->
+
+  <div id="ctab-receive" style="display:none;flex-direction:column;align-items:center;width:100%;">
+    <div class="heading" id="cReceiveHeading">Ready to receive</div>
+    <div class="subheading" id="cReceiveSubheading">Hold your phone near the stamp</div>
     <div class="receive-ring" id="cReceiveRing"><div class="receive-icon">✦</div></div>
     <div class="message" id="cReceiveMsg"></div>
     <div class="error" id="cReceiveErr"></div>
-    <div class="token-card" id="cTokenCard">
-      <div class="token-label">Token</div>
-      <div class="token-venue-name" id="cTokenVenue"></div>
-      <div id="cQrcode"></div>
-      <div class="token-label">Token ID</div>
-      <div class="token-id-text" id="cTokenId"></div>
-      <div class="sig-status" id="cSigStatus"></div>
-    </div>
-  </div><div id="ctab-passes" style="display:none;flex-direction:column;align-items:center;width:100%;">
+
+```
+<!-- Standard stamp received card -->
+<div class="token-card" id="cTokenCard">
+  <div class="token-label">Token</div>
+  <div class="token-venue-name" id="cTokenVenue"></div>
+  <div id="cQrcode"></div>
+  <div class="token-label">Token ID</div>
+  <div class="token-id-text" id="cTokenId"></div>
+  <div class="sig-status" id="cSigStatus"></div>
+</div>
+
+<!-- Redemption token card -->
+<div class="redemption-card" id="cRedemptionCard">
+  <div class="redemption-title">Redemption Token</div>
+  <div class="token-venue-name">The Anchor</div>
+  <div class="token-label">Show token ID to staff</div>
+  <div id="cRedemptionId" style="font-family:monospace;font-size:13px;color:#4caf7d;word-break:break-all;text-align:center;padding:12px;background:#111;border-radius:6px;width:100%;margin:4px 0;"></div>
+  <button class="btn-ghost btn-sm" onclick="copyRedemptionId()">Copy Token ID</button>
+  <div class="sig-status sig-valid" id="cRedemptionSig">✓ Signed</div>
+  <div id="cRedemptionQr"></div>
+</div>
+```
+
+  </div>
+
+  <!-- PASSES TAB -->
+
+  <div id="ctab-passes" style="display:none;flex-direction:column;align-items:center;width:100%;">
     <div class="heading">Your Passes</div>
     <div class="subheading">Event passes appear here</div>
     <div id="passList" style="width:100%;"></div>
   </div>
-</div><!-- SCREEN: STAFF --><div class="screen" id="screen-staff">
+</div>
+
+<!-- SCREEN: STAFF -->
+
+<div class="screen" id="screen-staff">
   <div class="wordmark">Tempo</div>
   <div class="nav">
     <div class="nav-item active" onclick="showTab('s','stamp')">Stamp</div>
+    <div class="nav-item" onclick="showTab('s','redeem')">Redeem</div>
     <div class="nav-item" onclick="showTab('s','scan')">Scan Ticket</div>
-  </div><div id="stab-stamp" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+  </div>
+
+  <!-- STAMP TAB -->
+
+  <div id="stab-stamp" style="width:100%;display:flex;flex-direction:column;align-items:center;">
     <div class="heading">Issue Stamp</div>
     <div class="subheading">Tap the button to issue a stamp to the customer's device</div>
     <div class="stamp-issue-btn" onclick="staffIssueStamp()">
@@ -176,7 +260,31 @@ textarea { resize: vertical; min-height: 80px; }
     </div>
     <div class="message" id="staffStampMsg"></div>
     <div class="error" id="staffStampErr"></div>
-  </div><div id="stab-scan" style="display:none;flex-direction:column;align-items:center;width:100%;">
+  </div>
+
+  <!-- REDEEM TAB -->
+
+  <div id="stab-redeem" style="display:none;flex-direction:column;align-items:center;width:100%;">
+    <div class="heading">Redeem Card</div>
+    <div class="subheading">Enter the redemption token ID from the customer's screen</div>
+    <input type="text" id="redeemScanInput" placeholder="Paste redemption token ID">
+    <button class="btn" onclick="staffScanRedemption()">Verify &amp; Redeem</button>
+    <div class="message" id="redeemScanMsg"></div>
+    <div class="error" id="redeemScanErr"></div>
+    <div class="redeem-result" id="redeemResult">
+      <div class="token-label">Redemption Token</div>
+      <div class="token-venue-name" id="redeemVenue"></div>
+      <div class="token-label">Stamps redeemed</div>
+      <div class="token-id-text" id="redeemStampCount"></div>
+      <div class="token-label">Token ID</div>
+      <div class="token-id-text" id="redeemTokenId"></div>
+      <div class="sig-status" id="redeemSigStatus"></div>
+    </div>
+  </div>
+
+  <!-- SCAN TICKET TAB -->
+
+  <div id="stab-scan" style="display:none;flex-direction:column;align-items:center;width:100%;">
     <div class="heading">Scan Ticket</div>
     <div class="subheading">Enter the token ID from the customer's pass to verify entry</div>
     <input type="text" id="scanInput" placeholder="Paste token ID here">
@@ -192,16 +300,26 @@ textarea { resize: vertical; min-height: 80px; }
       <div class="token-id-text" id="scanTokenId"></div>
       <div class="sig-status" id="scanSigStatus"></div>
     </div>
-  </div><div style="height:32px"></div>
+  </div>
+
+  <div style="height:32px"></div>
   <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Sign out</button>
-</div><!-- SCREEN: ADMIN --><div class="screen" id="screen-admin">
+</div>
+
+<!-- SCREEN: ADMIN -->
+
+<div class="screen" id="screen-admin">
   <div class="wordmark">Tempo</div>
   <div class="nav">
     <div class="nav-item active" onclick="showTab('a','overview')">Overview</div>
     <div class="nav-item" onclick="showTab('a','events')">Events</div>
     <div class="nav-item" onclick="showTab('a','board')">Board</div>
     <div class="nav-item" onclick="showTab('a','settings')">Settings</div>
-  </div><!-- OVERVIEW --><div id="atab-overview" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+  </div>
+
+  <!-- OVERVIEW -->
+
+  <div id="atab-overview" style="width:100%;display:flex;flex-direction:column;align-items:center;">
     <div class="stat-row">
       <div class="stat"><div class="stat-num" id="statStamps">0</div><div class="stat-label">Stamps issued</div></div>
       <div class="stat"><div class="stat-num" id="statEvents">0</div><div class="stat-label">Active events</div></div>
@@ -210,23 +328,33 @@ textarea { resize: vertical; min-height: 80px; }
       <div class="stat"><div class="stat-num" id="statPasses">0</div><div class="stat-label">Passes issued</div></div>
       <div class="stat"><div class="stat-num" id="statRedeemed">0</div><div class="stat-label">Redeemed</div></div>
     </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num" id="statCardsRedeemed">0</div><div class="stat-label">Cards redeemed</div></div>
+    </div>
     <div class="key-info">
       <div class="key-info-label">Venue Public Key</div>
       <div class="key-info-val" id="adminPubKey">Loading...</div>
     </div>
-  </div><!-- EVENTS --><div id="atab-events" style="display:none;flex-direction:column;align-items:center;width:100%;">
+  </div>
+
+  <!-- EVENTS -->
+
+  <div id="atab-events" style="display:none;flex-direction:column;align-items:center;width:100%;">
     <div class="section-label">Active Events</div>
     <div class="event-list" id="eventList"></div>
     <div class="admin-card">
       <div class="admin-card-title">Create Event</div>
       <input type="text" id="evtName" placeholder="Event name">
-      <input type="text" id="evtDate" placeholder="Date (e.g. Sat 15 Mar)">
-      <input type="number" id="evtTickets" placeholder="Total tickets" min="1">
-      <input type="number" id="evtPrice" placeholder="Price (€)" min="0">
+      <input type="text" id="evtDate" placeholder="Date (dd/mm/yy)">
+      <input type="text" id="evtTickets" placeholder="Total tickets" inputmode="numeric" pattern="[0-9]*">
       <button class="btn" onclick="createEvent()">Create Event</button>
       <div class="message" id="evtMsg"></div>
     </div>
-  </div><!-- NOTICEBOARD --><div id="atab-board" style="display:none;flex-direction:column;align-items:center;width:100%;">
+  </div>
+
+  <!-- NOTICEBOARD -->
+
+  <div id="atab-board" style="display:none;flex-direction:column;align-items:center;width:100%;">
     <div class="section-label">Posted</div>
     <div id="postList" style="width:100%;margin-bottom:20px;"></div>
     <div class="admin-card">
@@ -236,7 +364,11 @@ textarea { resize: vertical; min-height: 80px; }
       <button class="btn" onclick="createPost()">Post</button>
       <div class="message" id="postMsg"></div>
     </div>
-  </div><!-- SETTINGS --><div id="atab-settings" style="display:none;flex-direction:column;align-items:center;width:100%;">
+  </div>
+
+  <!-- SETTINGS -->
+
+  <div id="atab-settings" style="display:none;flex-direction:column;align-items:center;width:100%;">
     <div class="admin-card">
       <div class="admin-card-title">Stamp Settings</div>
       <div style="font-size:13px;color:#666;margin-bottom:12px;">Stamps required for reward</div>
@@ -246,7 +378,7 @@ textarea { resize: vertical; min-height: 80px; }
     </div>
     <div class="admin-card">
       <div class="admin-card-title">Security</div>
-      <div style="font-size:13px;color:#666;margin-bottom:16px;line-height:1.6;">Rotate the venue signing key if the physical stamp device is lost or stolen. All existing stamps remain valid -- new stamps will use the new key.</div>
+      <div style="font-size:13px;color:#666;margin-bottom:16px;line-height:1.6;">Rotate the venue signing key if the physical stamp device is lost or stolen. All existing stamps remain valid — new stamps will use the new key.</div>
       <button class="btn-danger" onclick="rotateKey()">Rotate Signing Key</button>
       <div class="message" id="keyMsg"></div>
     </div>
@@ -260,9 +392,11 @@ textarea { resize: vertical; min-height: 80px; }
     <div style="height:16px"></div>
     <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Sign out</button>
     <div style="height:16px"></div>
-    <button class="btn-danger" onclick="nukeAll()">↺ Factory Reset (PoC only)</button>
+    <button id="nukeBtn" class="btn-danger" onclick="nukeAll()">↺ Factory Reset (PoC only)</button>
   </div>
-</div><script>
+</div>
+
+<script>
 // ─── CRYPTO ───────────────────────────────────────────────
 const ECDSA = { name:'ECDSA', namedCurve:'P-256' };
 let vKP = null, vPubRaw = null;
@@ -317,9 +451,13 @@ const LS = {
   savePasses: v => LS.set('t_passes', v),
   redeemed: () => LS.get('t_redeemed') || [],
   saveRedeemed: v => LS.set('t_redeemed', v),
+  redemptions: () => LS.get('t_redemptions') || [],
+  saveRedemptions: v => LS.set('t_redemptions', v),
   threshold: () => LS.get('t_threshold') || 6,
   staffPw: () => LS.get('t_spw') || 'staff',
   adminPw: () => LS.get('t_apw') || 'admin',
+  cardsRedeemed: () => LS.get('t_cards_redeemed') || 0,
+  saveCardsRedeemed: v => LS.set('t_cards_redeemed', v),
 };
 
 function uid() { return 'tok_'+Date.now()+'_'+Math.random().toString(36).slice(2,8); }
@@ -341,18 +479,43 @@ function setRole(r) {
 function doLogin() {
   const pw = document.getElementById('loginPassword').value;
   const err = document.getElementById('loginError');
-  if (loginRole==='staff' && pw===LS.staffPw()) { go('screen-staff'); document.getElementById('loginPassword').value=''; err.textContent=''; }
-  else if (loginRole==='admin' && pw===LS.adminPw()) { go('screen-admin'); document.getElementById('loginPassword').value=''; err.textContent=''; }
-  else { err.textContent='Incorrect password'; }
+  if (loginRole==='staff' && pw===LS.staffPw()) {
+    go('screen-staff');
+    document.getElementById('loginPassword').value='';
+    err.textContent='';
+  } else if (loginRole==='admin' && pw===LS.adminPw()) {
+    go('screen-admin');
+    document.getElementById('loginPassword').value='';
+    err.textContent='';
+  } else {
+    err.textContent='Incorrect password';
+  }
 }
 
 function showTab(prefix, tab) {
-  const tabs = {c:['stamps','receive','passes'], s:['stamp','scan'], a:['overview','events','board','settings']}[prefix];
-  tabs.forEach(t => { const el=document.getElementById(prefix+'tab-'+t); if(el){ el.style.display='none'; }});
-  document.querySelectorAll('#screen-'+(prefix==='c'?'customer':prefix==='s'?'staff':'admin')+' .nav-item')
+  const tabs = {
+    c:['stamps','receive','passes'],
+    s:['stamp','redeem','scan'],
+    a:['overview','events','board','settings']
+  }[prefix];
+
+  tabs.forEach(t => {
+    const el = document.getElementById(prefix+'tab-'+t);
+    if(el) el.style.display='none';
+  });
+
+  const screenId = prefix==='c'?'screen-customer':prefix==='s'?'screen-staff':'screen-admin';
+  document.querySelectorAll('#'+screenId+' .nav-item')
     .forEach((el,i)=>el.classList.toggle('active', tabs[i]===tab));
+
   const el = document.getElementById(prefix+'tab-'+tab);
-  if(el){ el.style.display='flex'; el.style.flexDirection='column'; el.style.alignItems='center'; el.style.width='100%'; }
+  if(el){
+    el.style.display='flex';
+    el.style.flexDirection='column';
+    el.style.alignItems='center';
+    el.style.width='100%';
+  }
+
   if(prefix==='c'&&tab==='stamps') renderStamps();
   if(prefix==='c'&&tab==='passes') renderPasses();
   if(prefix==='c'&&tab==='receive') resetCReceive();
@@ -371,39 +534,195 @@ function renderStamps() {
     c.innerHTML=`<div class="stamp-icon">✦</div><div class="stamp-num">${i+1}</div>`;
     grid.appendChild(c);
   }
-  document.getElementById('rewardBanner').classList.toggle('visible', stamps.length>=goal);
+  const full = stamps.length >= goal;
+  document.getElementById('rewardBanner').classList.toggle('visible', full);
+  document.getElementById('redeemBtn').style.display = full ? 'block' : 'none';
 }
 
 function renderPasses() {
   const passes = LS.passes();
   const list = document.getElementById('passList');
-  if(!passes.length){ list.innerHTML='<div style="color:#444;font-size:13px;text-align:center;margin:40px 0;">No passes yet</div>'; return; }
+  if(!passes.length){
+    list.innerHTML='<div style="color:#444;font-size:13px;text-align:center;margin:40px 0;">No passes yet</div>';
+    return;
+  }
   list.innerHTML = passes.map(p=>`
     <div class="post-item">
       <div class="post-title">${p.eventName}</div>
-      <div class="post-body">${p.eventDate} · €${p.price}</div>
+      <div class="post-body">${p.eventDate}</div>
       <div class="post-meta">${p.id}</div>
     </div>`).join('');
 }
 
 function resetCReceive() {
+  document.getElementById('cReceiveHeading').textContent = 'Ready to receive';
+  document.getElementById('cReceiveSubheading').textContent = 'Hold your phone near the stamp';
   document.getElementById('cReceiveRing').classList.remove('verified','rejected');
   document.getElementById('cReceiveMsg').textContent='';
   document.getElementById('cReceiveErr').textContent='';
   document.getElementById('cTokenCard').classList.remove('visible','verified-card','rejected-card');
   document.getElementById('cQrcode').innerHTML='';
+  document.getElementById('cRedemptionCard').classList.remove('visible');
+  document.getElementById('cRedemptionQr').innerHTML='';
 }
 
-// ─── STAFF ────────────────────────────────────────────────
+function copyRedemptionId() {
+  const id = document.getElementById('cRedemptionId').textContent;
+  navigator.clipboard.writeText(id).then(() => {
+    document.getElementById('cReceiveMsg').textContent = 'Token ID copied';
+    setTimeout(() => document.getElementById('cReceiveMsg').textContent = '', 2000);
+  }).catch(() => {
+    // Fallback — select the text
+    const el = document.getElementById('cRedemptionId');
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+}
+
+// ─── STAMP REDEMPTION ─────────────────────────────────────
+async function initiateRedemption() {
+  const stamps = LS.stamps();
+  const goal = LS.threshold();
+
+  if(stamps.length < goal) return;
+
+  // Build payload with explicit key ordering for deterministic signing
+  const payload = {
+    id: uid(),
+    type: 'redemption',
+    venue: 'the-anchor-001',
+    venueName: 'The Anchor',
+    stampsRedeemed: stamps.length,
+    goal: goal,
+    issued: new Date().toISOString()
+  };
+
+  const signature = await sign(payload);
+
+  // Store payload and signature separately so verification uses identical payload
+  const redemptionToken = {
+    payload,
+    signature,
+    id: payload.id
+  };
+
+  // Store in redemption ledger (pending — staff must confirm)
+  const redemptions = LS.redemptions();
+  redemptions.push({...redemptionToken, status: 'pending'});
+  LS.saveRedemptions(redemptions);
+
+  // Clear stamps immediately
+  LS.saveStamps([]);
+  renderStamps();
+
+  // Switch to receive tab and show redemption QR
+  showTab('c', 'receive');
+
+  document.getElementById('cReceiveHeading').textContent = 'Redemption Token';
+  document.getElementById('cReceiveSubheading').textContent = 'Show this to staff to claim your reward';
+  document.getElementById('cReceiveRing').classList.add('verified');
+
+  const qrEl = document.getElementById('cRedemptionQr');
+  qrEl.innerHTML = '';
+  new QRCode(qrEl, {
+    text: payload.id,
+    width: 160,
+    height: 160,
+    colorDark: '#000',
+    colorLight: '#fff'
+  });
+
+  document.getElementById('cRedemptionId').textContent = payload.id;
+  document.getElementById('cRedemptionCard').classList.add('visible');
+}
+
+// ─── STAFF — REDEEM SCAN ──────────────────────────────────
+async function staffScanRedemption() {
+  const input = document.getElementById('redeemScanInput').value.trim();
+  const msg = document.getElementById('redeemScanMsg');
+  const err = document.getElementById('redeemScanErr');
+  const result = document.getElementById('redeemResult');
+
+  msg.textContent=''; err.textContent='';
+  result.classList.remove('visible','success','failure');
+
+  if(!input){ err.textContent='Paste a redemption token ID first.'; return; }
+
+  // Look up by ID against stored redemptions
+  const redemptions = LS.redemptions();
+  const record = redemptions.find(r => r.id === input || (r.payload && r.payload.id === input));
+
+  if(!record){ err.textContent='Token not found. Check the ID and try again.'; return; }
+
+  // Check not already redeemed
+  const redeemed = LS.redeemed();
+  if(redeemed.includes(record.id)){
+    err.textContent='This redemption token has already been used.';
+    document.getElementById('redeemVenue').textContent = record.payload ? record.payload.venueName : '—';
+    document.getElementById('redeemStampCount').textContent = record.payload ? `${record.payload.stampsRedeemed} stamps` : '—';
+    document.getElementById('redeemTokenId').textContent = record.id;
+    const sigEl = document.getElementById('redeemSigStatus');
+    sigEl.textContent = '✗ Already redeemed';
+    sigEl.className = 'sig-status sig-invalid';
+    result.classList.add('visible','failure');
+    return;
+  }
+
+  // Verify signature against the stored payload (same object that was signed)
+  const valid = await verify(record.payload, record.signature);
+
+  document.getElementById('redeemVenue').textContent = record.payload.venueName;
+  document.getElementById('redeemStampCount').textContent = `${record.payload.stampsRedeemed} stamps`;
+  document.getElementById('redeemTokenId').textContent = record.id;
+
+  const sigEl = document.getElementById('redeemSigStatus');
+
+  if(valid){
+    redeemed.push(record.id);
+    LS.saveRedeemed(redeemed);
+
+    // Update redemption record status
+    const updated = redemptions.map(r =>
+      r.id === record.id ? {...r, status:'redeemed', redeemedAt: new Date().toISOString()} : r
+    );
+    LS.saveRedemptions(updated);
+    LS.saveCardsRedeemed(LS.cardsRedeemed() + 1);
+
+    msg.textContent = '✓ Valid — reward granted';
+    sigEl.textContent = '✓ Signature valid';
+    sigEl.className = 'sig-status sig-valid';
+    result.classList.add('visible','success');
+  } else {
+    err.textContent = '✗ Invalid token — rejected';
+    sigEl.textContent = '✗ Signature invalid';
+    sigEl.className = 'sig-status sig-invalid';
+    result.classList.add('visible','failure');
+  }
+}
+
+// ─── STAFF — STAMP ISSUE ──────────────────────────────────
 async function staffIssueStamp() {
   const stamps = LS.stamps(), goal = LS.threshold();
   const msg = document.getElementById('staffStampMsg');
   const err = document.getElementById('staffStampErr');
   msg.textContent=''; err.textContent='';
 
-  if(stamps.length>=goal){ err.textContent='Customer card is full -- ask them to redeem first.'; return; }
+  if(stamps.length>=goal){
+    err.textContent='Customer card is full — ask them to redeem first.';
+    return;
+  }
 
-  const payload = { id:uid(), type:'stamp', venue:'the-anchor-001', venueName:'The Anchor', issued:new Date().toISOString(), stampNumber:stamps.length+1, goal };
+  const payload = {
+    id: uid(),
+    type: 'stamp',
+    venue: 'the-anchor-001',
+    venueName: 'The Anchor',
+    issued: new Date().toISOString(),
+    stampNumber: stamps.length+1,
+    goal
+  };
   const signature = await sign(payload);
   const token = {...payload, signature};
   stamps.push(token);
@@ -412,7 +731,6 @@ async function staffIssueStamp() {
   msg.textContent = `✦ Stamp ${stamps.length} of ${goal} issued`;
   setTimeout(()=>msg.textContent='', 3000);
 
-  // Mirror to customer receive view if open
   mirrorToCustomer(token, true);
 }
 
@@ -433,19 +751,25 @@ async function mirrorToCustomer(token, valid) {
   document.getElementById('cReceiveMsg').textContent = valid ? `Stamp ${token.stampNumber} of ${token.goal} received ✦` : '';
 }
 
+// ─── STAFF — TICKET SCAN ──────────────────────────────────
 async function scanTicket() {
   const id = document.getElementById('scanInput').value.trim();
   const msg = document.getElementById('scanMsg');
   const err = document.getElementById('scanErr');
   const result = document.getElementById('scanResult');
-  msg.textContent=''; err.textContent=''; result.classList.remove('visible','verified-card','rejected-card');
+  msg.textContent=''; err.textContent='';
+  result.classList.remove('visible','verified-card','rejected-card');
 
   const passes = LS.passes();
   const redeemed = LS.redeemed();
   const pass = passes.find(p=>p.id===id);
 
   if(!pass){ err.textContent='Pass not found.'; return; }
-  if(redeemed.includes(id)){ err.textContent='Pass already redeemed.'; result.classList.add('visible','rejected-card'); return; }
+  if(redeemed.includes(id)){
+    err.textContent='Pass already redeemed.';
+    result.classList.add('visible','rejected-card');
+    return;
+  }
 
   const {signature, ...payload} = pass;
   const valid = await verify(payload, signature);
@@ -457,11 +781,11 @@ async function scanTicket() {
 
   if(valid){
     redeemed.push(id); LS.saveRedeemed(redeemed);
-    msg.textContent='✓ Valid -- entry granted';
+    msg.textContent='✓ Valid — entry granted';
     sigEl.textContent='✓ Signature valid'; sigEl.className='sig-status sig-valid';
     result.classList.add('visible','verified-card');
   } else {
-    err.textContent='✗ Invalid token -- entry denied';
+    err.textContent='✗ Invalid token — entry denied';
     sigEl.textContent='✗ Signature invalid'; sigEl.className='sig-status sig-invalid';
     result.classList.add('visible','rejected-card');
   }
@@ -474,6 +798,7 @@ function refreshAdmin() {
   document.getElementById('statEvents').textContent = events.filter(e=>e.active).length;
   document.getElementById('statPasses').textContent = passes.length;
   document.getElementById('statRedeemed').textContent = redeemed.length;
+  document.getElementById('statCardsRedeemed').textContent = LS.cardsRedeemed();
   document.getElementById('adminPubKey').textContent = vPubRaw ? vPubRaw.slice(0,48)+'...' : '--';
   document.getElementById('stampThreshold').value = LS.threshold();
   renderEvents(); renderPosts();
@@ -482,44 +807,70 @@ function refreshAdmin() {
 function renderEvents() {
   const events = LS.events();
   const list = document.getElementById('eventList');
-  if(!events.length){ list.innerHTML='<div style="color:#444;font-size:13px;margin-bottom:16px;">No events yet</div>'; return; }
+  if(!events.length){
+    list.innerHTML='<div style="color:#444;font-size:13px;margin-bottom:16px;">No events yet</div>';
+    return;
+  }
   list.innerHTML = events.map(e=>`
     <div class="event-item">
       <div>
         <div class="event-name">${e.name}</div>
-        <div class="event-meta">${e.date} · €${e.price} · ${e.tickets} tickets</div>
+        <div class="event-meta">${e.date} · ${e.tickets} tickets</div>
       </div>
       <div class="event-badge">Active</div>
     </div>`).join('');
 }
 
-async function createEvent() {
-  const name=document.getElementById('evtName').value.trim();
-  const date=document.getElementById('evtDate').value.trim();
-  const tickets=parseInt(document.getElementById('evtTickets').value);
-  const price=parseFloat(document.getElementById('evtPrice').value);
-  const msg=document.getElementById('evtMsg');
-  if(!name||!date||!tickets||isNaN(price)){ msg.style.color='#e05555'; msg.textContent='Fill in all fields'; return; }
+function createEvent() {
+  try {
+    const name = document.getElementById('evtName').value.trim();
+    const dateRaw = document.getElementById('evtDate').value.trim();
+    const tickets = parseInt(document.getElementById('evtTickets').value);
+    const msg = document.getElementById('evtMsg');
 
-  const event = {id:uid(), name, date, tickets, price, active:true, created:new Date().toISOString()};
-  const events = LS.events(); events.push(event); LS.saveEvents(events);
+    if(!name || !dateRaw || !tickets){
+      msg.style.color='#e05555';
+      msg.textContent='Fill in all fields';
+      return;
+    }
 
-  // Issue a sample pass to the customer's pass book
-  const passPayload = {id:uid(), type:'pass', venue:'the-anchor-001', venueName:'The Anchor', eventName:name, eventDate:date, price, issued:new Date().toISOString()};
-  const signature = await sign(passPayload);
-  const pass = {...passPayload, signature};
-  const passes = LS.passes(); passes.push(pass); LS.savePasses(passes);
+    const sep = dateRaw.includes('/') ? '/' : dateRaw.includes('-') ? '-' : '.';
+    const dateParts = dateRaw.split(sep);
+    const validDate = dateParts.length === 3 && dateParts.every(p => p.length > 0 && !isNaN(Number(p)));
+    if(!validDate){
+      msg.style.color='#e05555';
+      msg.textContent='Use dd/mm/yy format';
+      return;
+    }
+    const dd = dateParts[0].padStart(2,'0');
+    const mm = dateParts[1].padStart(2,'0');
+    const yy = dateParts[2].padStart(2,'0');
+    const date = `${dd}/${mm}/${yy}`;
 
-  msg.style.color='#4caf7d'; msg.textContent=`Event created -- pass issued`;
-  ['evtName','evtDate','evtTickets','evtPrice'].forEach(id=>document.getElementById(id).value='');
-  renderEvents();
-  setTimeout(()=>msg.textContent='',3000);
+    const event = {id:uid(), name, date, tickets, active:true, created:new Date().toISOString()};
+    const events = LS.events();
+    events.push(event);
+    LS.saveEvents(events);
+
+    msg.style.color='#4caf7d';
+    msg.textContent='Event created';
+    ['evtName','evtDate','evtTickets'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+    renderEvents();
+    setTimeout(()=>{ const el=document.getElementById('evtMsg'); if(el) el.textContent=''; },3000);
+  } catch(e) {
+    const msg = document.getElementById('evtMsg');
+    if(msg) { msg.style.color='#e05555'; msg.textContent='Error: '+(e && e.message ? e.message : e); }
+    console.error('createEvent:', e);
+  }
 }
 
 function renderPosts() {
   const posts = LS.posts();
   const list = document.getElementById('postList');
-  if(!posts.length){ list.innerHTML='<div style="color:#444;font-size:13px;margin-bottom:16px;">No posts yet</div>'; return; }
+  if(!posts.length){
+    list.innerHTML='<div style="color:#444;font-size:13px;margin-bottom:16px;">No posts yet</div>';
+    return;
+  }
   list.innerHTML = posts.map(p=>`
     <div class="post-item">
       <div class="post-title">${p.title}</div>
@@ -529,18 +880,22 @@ function renderPosts() {
 }
 
 function createPost() {
-  const title=document.getElementById('postTitle').value.trim();
-  const body=document.getElementById('postBody').value.trim();
-  const msg=document.getElementById('postMsg');
-  if(!title||!body){ msg.style.color='#e05555'; msg.textContent='Fill in all fields'; return; }
-  const posts=LS.posts();
-  posts.unshift({id:uid(),title,body,created:new Date().toISOString()});
-  LS.savePosts(posts);
-  msg.style.color='#4caf7d'; msg.textContent='Posted';
-  document.getElementById('postTitle').value='';
-  document.getElementById('postBody').value='';
-  renderPosts();
-  setTimeout(()=>msg.textContent='',3000);
+  try {
+    const title=document.getElementById('postTitle').value.trim();
+    const body=document.getElementById('postBody').value.trim();
+    const msg=document.getElementById('postMsg');
+    if(!title||!body){ msg.style.color='#e05555'; msg.textContent='Fill in all fields'; return; }
+    const posts=LS.posts();
+    posts.unshift({id:uid(),title,body,created:new Date().toISOString()});
+    LS.savePosts(posts);
+    msg.style.color='#4caf7d'; msg.textContent='Posted';
+    document.getElementById('postTitle').value='';
+    document.getElementById('postBody').value='';
+    renderPosts();
+    setTimeout(()=>msg.textContent='',3000);
+  } catch(e) {
+    console.error('createPost error:', e);
+  }
 }
 
 function saveThreshold() {
@@ -553,10 +908,17 @@ function saveThreshold() {
 }
 
 async function rotateKey() {
-  if(!confirm('Rotate the signing key? The physical stamp device will need to be updated. Existing stamps remain valid.')) return;
-  await genKeys();
   const msg=document.getElementById('keyMsg');
-  msg.style.color='#4caf7d'; msg.textContent='Key rotated -- update the stamp device';
+  if(msg.dataset.confirming !== 'true') {
+    msg.style.color='#e05555';
+    msg.textContent='Tap again to confirm key rotation';
+    msg.dataset.confirming='true';
+    setTimeout(()=>{ msg.textContent=''; msg.dataset.confirming=''; },4000);
+    return;
+  }
+  msg.dataset.confirming='';
+  await genKeys();
+  msg.style.color='#4caf7d'; msg.textContent='Key rotated — update the stamp device';
   document.getElementById('adminPubKey').textContent = vPubRaw.slice(0,48)+'...';
   setTimeout(()=>msg.textContent='',4000);
 }
@@ -574,11 +936,21 @@ function savePw() {
 }
 
 function nukeAll() {
-  if(!confirm('Factory reset -- delete all data?')) return;
-  localStorage.clear(); location.reload();
+  const btn = document.getElementById('nukeBtn');
+  if(btn.dataset.confirming !== 'true') {
+    btn.textContent='↺ Tap again to confirm reset';
+    btn.dataset.confirming='true';
+    setTimeout(()=>{ btn.textContent='↺ Factory Reset (PoC only)'; btn.dataset.confirming=''; },4000);
+    return;
+  }
+  localStorage.clear();
+  location.reload();
 }
+
 
 // ─── BOOT ─────────────────────────────────────────────────
 initKeys().then(()=>{ renderStamps(); });
-</script></body>
+</script>
+
+</body>
 </html>
