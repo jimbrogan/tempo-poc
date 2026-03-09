@@ -149,8 +149,8 @@ textarea { resize: vertical; min-height: 80px; }
   </div>
   <div class="heading">Welcome in</div>
   <div class="subheading">Your stamps and passes live on your device — not ours.</div>
-  <button class="btn" onclick="go('screen-customer')">Open My Stamp Book</button>
-  <button class="btn-ghost" onclick="go('screen-login')">Staff / Admin</button>
+  <button class="btn" id="btnOpenStampBook">Open My Stamp Book</button>
+  <button class="btn-ghost" id="btnStaffAdmin">Staff / Admin</button>
 </div>
 
 <!-- SCREEN: LOGIN -->
@@ -161,14 +161,14 @@ textarea { resize: vertical; min-height: 80px; }
   <div class="subheading">Local access only</div>
   <div class="login-card">
     <div class="role-tabs">
-      <div class="role-tab active" onclick="setRole('staff')">Staff</div>
-      <div class="role-tab" onclick="setRole('admin')">Admin</div>
+      <div class="role-tab active" id="roleStaff">Staff</div>
+      <div class="role-tab" id="roleAdmin">Admin</div>
     </div>
-    <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <input type="password" id="loginPassword" placeholder="Password">
     <div class="error" id="loginError"></div>
-    <button class="btn" onclick="doLogin()">Enter</button>
+    <button class="btn" id="btnLogin">Enter</button>
   </div>
-  <button class="btn-ghost" onclick="go('screen-portal')">← Back</button>
+  <button class="btn-ghost" id="btnLoginBack">← Back</button>
   <div style="margin-top:24px;font-size:11px;color:#333;text-align:center;">PoC passwords: staff / admin</div>
 </div>
 
@@ -177,9 +177,9 @@ textarea { resize: vertical; min-height: 80px; }
 <div class="screen" id="screen-customer">
   <div class="wordmark">Tempo</div>
   <div class="nav">
-    <div class="nav-item active" onclick="showTab('c','stamps')">Stamps</div>
-    <div class="nav-item" onclick="showTab('c','receive')">Receive</div>
-    <div class="nav-item" onclick="showTab('c','passes')">Passes</div>
+    <div class="nav-item active" id="cnav-stamps">Stamps</div>
+    <div class="nav-item" id="cnav-receive">Receive</div>
+    <div class="nav-item" id="cnav-passes">Passes</div>
   </div>
 
   <!-- STAMPS TAB -->
@@ -192,8 +192,8 @@ textarea { resize: vertical; min-height: 80px; }
       <div class="reward-title">Card Complete</div>
       <div class="reward-body">Tap below to generate your redemption token</div>
     </div>
-    <button class="btn-redeem" id="redeemBtn" style="display:none;" onclick="initiateRedemption()">Redeem Reward →</button>
-    <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Back to entrance</button>
+    <button class="btn-redeem" id="redeemBtn" style="display:none;">Redeem Reward →</button>
+    <button class="btn-ghost btn-sm" id="btnCustomerBack">← Back to entrance</button>
   </div>
 
   <!-- RECEIVE TAB -->
@@ -222,7 +222,7 @@ textarea { resize: vertical; min-height: 80px; }
   <div class="token-venue-name">The Anchor</div>
   <div class="token-label">Show token ID to staff</div>
   <div id="cRedemptionId" style="font-family:monospace;font-size:13px;color:#4caf7d;word-break:break-all;text-align:center;padding:12px;background:#111;border-radius:6px;width:100%;margin:4px 0;"></div>
-  <button class="btn-ghost btn-sm" onclick="copyRedemptionId()">Copy Token ID</button>
+  <button class="btn-ghost btn-sm" id="btnCopyRedemption">Copy Token ID</button>
   <div class="sig-status sig-valid" id="cRedemptionSig">✓ Signed</div>
   <div id="cRedemptionQr"></div>
 </div>
@@ -244,9 +244,9 @@ textarea { resize: vertical; min-height: 80px; }
 <div class="screen" id="screen-staff">
   <div class="wordmark">Tempo</div>
   <div class="nav">
-    <div class="nav-item active" onclick="showTab('s','stamp')">Stamp</div>
-    <div class="nav-item" onclick="showTab('s','redeem')">Redeem</div>
-    <div class="nav-item" onclick="showTab('s','scan')">Scan Ticket</div>
+    <div class="nav-item active" id="snav-stamp">Stamp</div>
+    <div class="nav-item" id="snav-redeem">Redeem</div>
+    <div class="nav-item" id="snav-scan">Scan Ticket</div>
   </div>
 
   <!-- STAMP TAB -->
@@ -254,7 +254,7 @@ textarea { resize: vertical; min-height: 80px; }
   <div id="stab-stamp" style="width:100%;display:flex;flex-direction:column;align-items:center;">
     <div class="heading">Issue Stamp</div>
     <div class="subheading">Tap the button to issue a stamp to the customer's device</div>
-    <div class="stamp-issue-btn" onclick="staffIssueStamp()">
+    <div class="stamp-issue-btn" id="btnIssueStamp">
       <div>✦</div>
       <div class="stamp-issue-label">Issue Stamp</div>
     </div>
@@ -268,7 +268,7 @@ textarea { resize: vertical; min-height: 80px; }
     <div class="heading">Redeem Card</div>
     <div class="subheading">Enter the redemption token ID from the customer's screen</div>
     <input type="text" id="redeemScanInput" placeholder="Paste redemption token ID">
-    <button class="btn" onclick="staffScanRedemption()">Verify &amp; Redeem</button>
+    <button class="btn" id="btnVerifyRedeem">Verify &amp; Redeem</button>
     <div class="message" id="redeemScanMsg"></div>
     <div class="error" id="redeemScanErr"></div>
     <div class="redeem-result" id="redeemResult">
@@ -288,7 +288,7 @@ textarea { resize: vertical; min-height: 80px; }
     <div class="heading">Scan Ticket</div>
     <div class="subheading">Enter the token ID from the customer's pass to verify entry</div>
     <input type="text" id="scanInput" placeholder="Paste token ID here">
-    <button class="btn" onclick="scanTicket()">Verify</button>
+    <button class="btn" id="btnScanTicket">Verify</button>
     <div class="message" id="scanMsg"></div>
     <div class="error" id="scanErr"></div>
     <div class="token-card" id="scanResult">
@@ -303,7 +303,7 @@ textarea { resize: vertical; min-height: 80px; }
   </div>
 
   <div style="height:32px"></div>
-  <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Sign out</button>
+  <button class="btn-ghost btn-sm" id="btnStaffSignOut">← Sign out</button>
 </div>
 
 <!-- SCREEN: ADMIN -->
@@ -311,10 +311,10 @@ textarea { resize: vertical; min-height: 80px; }
 <div class="screen" id="screen-admin">
   <div class="wordmark">Tempo</div>
   <div class="nav">
-    <div class="nav-item active" onclick="showTab('a','overview')">Overview</div>
-    <div class="nav-item" onclick="showTab('a','events')">Events</div>
-    <div class="nav-item" onclick="showTab('a','board')">Board</div>
-    <div class="nav-item" onclick="showTab('a','settings')">Settings</div>
+    <div class="nav-item active" id="anav-overview">Overview</div>
+    <div class="nav-item" id="anav-events">Events</div>
+    <div class="nav-item" id="anav-board">Board</div>
+    <div class="nav-item" id="anav-settings">Settings</div>
   </div>
 
   <!-- OVERVIEW -->
@@ -361,7 +361,7 @@ textarea { resize: vertical; min-height: 80px; }
       <div class="admin-card-title">New Post</div>
       <input type="text" id="postTitle" placeholder="Title">
       <textarea id="postBody" placeholder="Content"></textarea>
-      <button class="btn" onclick="createPost()">Post</button>
+      <button class="btn" id="btnCreatePost">Post</button>
       <div class="message" id="postMsg"></div>
     </div>
   </div>
@@ -372,27 +372,27 @@ textarea { resize: vertical; min-height: 80px; }
     <div class="admin-card">
       <div class="admin-card-title">Stamp Settings</div>
       <div style="font-size:13px;color:#666;margin-bottom:12px;">Stamps required for reward</div>
-      <input type="number" id="stampThreshold" min="1" max="20" value="6">
-      <button class="btn" onclick="saveThreshold()">Save</button>
+      <input type="text" id="stampThreshold" inputmode="numeric" pattern="[0-9]*" value="6">
+      <button class="btn" id="btnSaveThreshold">Save</button>
       <div class="message" id="thresholdMsg"></div>
     </div>
     <div class="admin-card">
       <div class="admin-card-title">Security</div>
       <div style="font-size:13px;color:#666;margin-bottom:16px;line-height:1.6;">Rotate the venue signing key if the physical stamp device is lost or stolen. All existing stamps remain valid — new stamps will use the new key.</div>
-      <button class="btn-danger" onclick="rotateKey()">Rotate Signing Key</button>
+      <button class="btn-danger" id="btnRotateKey">Rotate Signing Key</button>
       <div class="message" id="keyMsg"></div>
     </div>
     <div class="admin-card">
       <div class="admin-card-title">Passwords</div>
       <input type="password" id="newStaffPw" placeholder="New staff password">
       <input type="password" id="newAdminPw" placeholder="New admin password">
-      <button class="btn" onclick="savePw()">Update Passwords</button>
+      <button class="btn" id="btnSavePw">Update Passwords</button>
       <div class="message" id="pwMsg"></div>
     </div>
     <div style="height:16px"></div>
-    <button class="btn-ghost btn-sm" onclick="go('screen-portal')">← Sign out</button>
+    <button class="btn-ghost btn-sm" id="btnAdminSignOut">← Sign out</button>
     <div style="height:16px"></div>
-    <button id="nukeBtn" class="btn-danger" onclick="nukeAll()">↺ Factory Reset (PoC only)</button>
+    <button id="nukeBtn" class="btn-danger">↺ Factory Reset (PoC only)</button>
   </div>
 </div>
 
@@ -950,9 +950,51 @@ function nukeAll() {
 
 // ─── BOOT ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Portal
+  document.getElementById('btnOpenStampBook').addEventListener('click', function() { go('screen-customer'); });
+  document.getElementById('btnStaffAdmin').addEventListener('click', function() { go('screen-login'); });
+
+  // Login
+  document.getElementById('roleStaff').addEventListener('click', function() { setRole('staff'); });
+  document.getElementById('roleAdmin').addEventListener('click', function() { setRole('admin'); });
+  document.getElementById('btnLogin').addEventListener('click', doLogin);
+  document.getElementById('btnLoginBack').addEventListener('click', function() { go('screen-portal'); });
+  document.getElementById('loginPassword').addEventListener('keydown', function(e) { if(e.key==='Enter') doLogin(); });
+
+  // Customer nav
+  document.getElementById('cnav-stamps').addEventListener('click', function() { showTab('c','stamps'); });
+  document.getElementById('cnav-receive').addEventListener('click', function() { showTab('c','receive'); });
+  document.getElementById('cnav-passes').addEventListener('click', function() { showTab('c','passes'); });
+  document.getElementById('redeemBtn').addEventListener('click', initiateRedemption);
+  document.getElementById('btnCustomerBack').addEventListener('click', function() { go('screen-portal'); });
+  document.getElementById('btnCopyRedemption').addEventListener('click', copyRedemptionId);
+
+  // Staff nav
+  document.getElementById('snav-stamp').addEventListener('click', function() { showTab('s','stamp'); });
+  document.getElementById('snav-redeem').addEventListener('click', function() { showTab('s','redeem'); });
+  document.getElementById('snav-scan').addEventListener('click', function() { showTab('s','scan'); });
+  document.getElementById('btnIssueStamp').addEventListener('click', staffIssueStamp);
+  document.getElementById('btnVerifyRedeem').addEventListener('click', staffScanRedemption);
+  document.getElementById('btnScanTicket').addEventListener('click', scanTicket);
+  document.getElementById('btnStaffSignOut').addEventListener('click', function() { go('screen-portal'); });
+
+  // Admin nav
+  document.getElementById('anav-overview').addEventListener('click', function() { showTab('a','overview'); });
+  document.getElementById('anav-events').addEventListener('click', function() { showTab('a','events'); });
+  document.getElementById('anav-board').addEventListener('click', function() { showTab('a','board'); });
+  document.getElementById('anav-settings').addEventListener('click', function() { showTab('a','settings'); });
   document.getElementById('createEventBtn').addEventListener('click', createEvent);
+  document.getElementById('btnCreatePost').addEventListener('click', createPost);
+  document.getElementById('btnSaveThreshold').addEventListener('click', saveThreshold);
+  document.getElementById('btnRotateKey').addEventListener('click', rotateKey);
+  document.getElementById('btnSavePw').addEventListener('click', savePw);
+  document.getElementById('btnAdminSignOut').addEventListener('click', function() { go('screen-portal'); });
+  document.getElementById('nukeBtn').addEventListener('click', nukeAll);
+
 });
-initKeys().then(()=>{ renderStamps(); });
+
+initKeys().then(function() { renderStamps(); });
 </script>
 
 </body>
